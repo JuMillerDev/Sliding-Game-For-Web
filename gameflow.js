@@ -15,6 +15,7 @@ var highlightedTile = { row: -1, col: -1 };
 var goalState = [];
 var emptyTile = { row: 0, col: 0 };
 var tempTilePhoto;
+var imagePassed = false;
 
 window.onload = function () {
     gameStarted = false;
@@ -97,19 +98,18 @@ function restoreTiles(img) {
 }
 
 function handleImg(e) {
+    imagePassed = true;
     file = e.target.files[0];
     url = URL.createObjectURL(e.target.files[0]);
 }
 
 function startGame() {
-
-    if (rows == 0 || url == null) {
-        window.alert("Please fill all Options");
-        return false;
-    }
-
     if (gameStarted) {
         window.alert("Game is already started. Please click Restart");
+        return false;
+    }
+    if (rows == 0 || imagePassed == false) {
+        window.alert("Please fill all Options");
         return false;
     }
 
@@ -335,6 +335,7 @@ function dehighlightTiles() {
 
 function restartGame() {
     gameStarted = false;
+    imagePassed = false;
     emptyTile.col = 0;
     emptyTile.row = 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
