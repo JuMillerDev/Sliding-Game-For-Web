@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sliding-Game</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <meta rel="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="gameflow.js"></script>
+</head>
+
+<body>
+    <main>
+        <h1>Fun Sliding Game</h1>
+        <div class="wrapper">
+            <canvas id="canvas" onmousemove="highlightTiles(event)" onmouseleave="dehighlightTiles()"></canvas>
+            <form onsubmit="return startGame()" onreset="restartGame()">
+                <label class="form-elem">Rows/Cols (2-9):</label>
+                <input class="form-elem" type="text" pattern="[2-9]" id="rows/cols">
+                <label class="form-elem">Select image: </label>
+                <input class="form-elem" type="file" value="Choose" id="img" name="chosen_img" accept="image/*">
+                <input class="form-elem" type="submit" value="Start" id="start/pause">
+                <input class="form-elem" type="reset" value="Reset" class="form-elem">
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
