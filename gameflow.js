@@ -17,6 +17,7 @@ var emptyTile = { row: 0, col: 0 };
 var tempTilePhoto;
 
 window.onload = function () {
+    gameStarted = false;
     var img = document.getElementById("img");
     img.addEventListener("change", handleImg, false);
     canvas = document.getElementById("canvas");
@@ -24,8 +25,6 @@ window.onload = function () {
     canvas.height = canvas.getBoundingClientRect().height;
     ctx = canvas.getContext("2d", { willReadFrequently: true });
     canvas.addEventListener("click", onTileClick);
-    gameStarted = false;
-    ctx.willReadFrequently = true;
 
     if (localStorage.getItem("visited") != null && localStorage.getItem("gameStarted") === "true") {
         recoverGameState();
@@ -103,6 +102,11 @@ function handleImg(e) {
 }
 
 function startGame() {
+
+    if (rows == 0 || url == null) {
+        window.alert("Please fill all Options");
+        return false;
+    }
 
     if (gameStarted) {
         window.alert("Game is already started. Please click Restart");
